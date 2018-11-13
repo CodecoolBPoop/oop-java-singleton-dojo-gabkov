@@ -21,7 +21,7 @@ public class Printer {
         printers.add(this);
     }
 
-    public static Printer getInstance(){
+    static Printer getInstance(){
         if (printers.size() < 10){
             instance = new Printer(++printerId);
         } else {
@@ -36,14 +36,14 @@ public class Printer {
     }
 
     // Prints out the given String
-    public void print(String toPrint) {
+    void print(String toPrint) {
         // Its not needed to actually print with a printer in this exercise
         System.out.println("Printer " + id + " is printing this: " + toPrint);
         busyEndTime = LocalTime.now().plusSeconds(5);
     }
 
     // Returns true if the printer is ready to print now.
-    public boolean isAvailable() {
+    boolean isAvailable() {
         return LocalTime.now().isAfter(busyEndTime);
     }
 }
